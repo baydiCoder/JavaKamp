@@ -2,39 +2,31 @@ package kodlamaio.hrms.entities.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@EqualsAndHashCode(callSuper=true)
 @Table(name="employees")
-@RequiredArgsConstructor
-public class Employee  extends User{
 
-	@Column(name="name")
-	@Getter
-	@Setter
-	private String Name;
+@AllArgsConstructor
+@NoArgsConstructor
+@Inheritance(strategy=InheritanceType.JOINED)
+public class Employee {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "employee_id")
+	private Integer employeeId;
 	
-	@Column(name="surname")
-	@Getter
-	@Setter
-	private String Surname;
 	
-	@Column(name="identity_number")
-	@Getter
-	@Setter
-	private String IdentityNumber;
-	
-	@Column(name="position_id")
-	@Getter
-	@Setter
-	private Integer PositionId;
 	
 }
