@@ -8,4 +8,5 @@ import kodlamaio.hrms.entities.concretes.JobProvider;
 public interface JobProviderService {
 	DataResult<List<JobProvider>> getAll();
 
+	void insert(JobProvider jobProvider,String email);
 }
