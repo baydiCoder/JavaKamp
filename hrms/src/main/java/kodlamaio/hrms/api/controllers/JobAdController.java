@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.JobAdService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.JobAd;
-import kodlamaio.hrms.entities.dtos.JobAdWithProviderDto;
+import kodlamaio.hrms.entities.dtos.JobAdWithCompanyDto;
 
 @RestController
 @RequestMapping("/api/jobAds")
@@ -29,19 +28,19 @@ public class JobAdController {
 	}
 	
 	@GetMapping("/getByIsActive")
-	public 	DataResult<List<JobAdWithProviderDto>> getByIsActive()
+	public 	DataResult<List<JobAdWithCompanyDto>> getByIsActive()
 	{
 		return this.jobAdService.getByIsActive();
 	}
 	
 	@PostMapping("/getByJobPosting")
-	public 	DataResult<List<JobAdWithProviderDto>> getByJobPosting(@RequestParam Date jobPosting)
+	public 	DataResult<List<JobAdWithCompanyDto>> getByJobPosting(@RequestParam Date jobPosting)
 	{
 		return this.jobAdService.getByJobPosting(jobPosting);
 	}
 	
 	@PostMapping("/getByCompanyName")
-	public 	DataResult<List<JobAdWithProviderDto>> getByCompanyName(@RequestParam String companyName)
+	public 	DataResult<List<JobAdWithCompanyDto>> getByCompanyName(@RequestParam String companyName)
 	{
 		return this.jobAdService.getByCompanyName(companyName);
 	}

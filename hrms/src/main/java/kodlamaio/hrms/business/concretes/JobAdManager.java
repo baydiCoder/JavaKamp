@@ -13,7 +13,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdDao;
 import kodlamaio.hrms.entities.concretes.JobAd;
-import kodlamaio.hrms.entities.dtos.JobAdWithProviderDto;
+import kodlamaio.hrms.entities.dtos.JobAdWithCompanyDto;
 
 @Service
 public class JobAdManager implements JobAdService{
@@ -27,21 +27,21 @@ public class JobAdManager implements JobAdService{
 	}
 	
 	@Override
-	public DataResult<List<JobAdWithProviderDto>> getByIsActive() {
-		return new SuccessDataResult<List<JobAdWithProviderDto>>(this.jobAdDao.getByIsActive(), "Data listelendi");
+	public DataResult<List<JobAdWithCompanyDto>> getByIsActive() {
+		return new SuccessDataResult<List<JobAdWithCompanyDto>>(this.jobAdDao.getByIsActive(), "Data listelendi");
 
 	}
 
 	@Override
-	public DataResult<List<JobAdWithProviderDto>> getByJobPosting(Date jobPosting) {
-		return new SuccessDataResult<List<JobAdWithProviderDto>>(this.jobAdDao.getByJobPosting(jobPosting), "Data listelendi");
+	public DataResult<List<JobAdWithCompanyDto>> getByJobPosting(Date jobPosting) {
+		return new SuccessDataResult<List<JobAdWithCompanyDto>>(this.jobAdDao.getByJobPosting(jobPosting), "Data listelendi");
 
 	}
 
 	@Override
-	public DataResult<List<JobAdWithProviderDto>> getByCompanyName(String companyName) {
+	public DataResult<List<JobAdWithCompanyDto>> getByCompanyName(String companyName) {
 		
-		return new SuccessDataResult<List<JobAdWithProviderDto>>(this.jobAdDao.getByCompanyName(companyName), "Data listelendi");
+		return new SuccessDataResult<List<JobAdWithCompanyDto>>(this.jobAdDao.getByCompanyName(companyName), "Data listelendi");
 
 	}
 

@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import kodlamaio.hrms.entities.concretes.JobAd;
-import kodlamaio.hrms.entities.dtos.JobAdWithProviderDto;
+import kodlamaio.hrms.entities.dtos.JobAdWithCompanyDto;
 
 public interface JobAdDao extends JpaRepository<JobAd, Integer> {
 	
@@ -23,28 +23,28 @@ public interface JobAdDao extends JpaRepository<JobAd, Integer> {
 	List<JobAdWithProviderDto> getByTest(String test);*/
 	
 	
-	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdWithProviderDto"
-	  		+"(jpr.companyName,jpos.positionName,ja.numberOfPosition,ja.jobPosting,ja.jobUnposting) "
+	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdWithCompanyDto"
+	  		+"(cmp.companyName,jpos.positionName,ja.numberOfPosition,ja.jobPosting,ja.jobUnposting) "
 	  		+ "From JobAd ja "
 	  		+ "Inner Join ja.jobPosition jpos "
-	  		+ "Inner Join ja.jobProvider jpr "
+	  		+ "Inner Join ja.company cmp "
 			+ "Where ja.isActive='true'")
-	List<JobAdWithProviderDto> getByIsActive();
+	List<JobAdWithCompanyDto> getByIsActive();
 	
-	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdWithProviderDto"
-	  		+"(jpr.companyName,jpos.positionName,ja.numberOfPosition,ja.jobPosting,ja.jobUnposting) "
+	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdWithCompanyDto"
+	  		+"(cmp.companyName,jpos.positionName,ja.numberOfPosition,ja.jobPosting,ja.jobUnposting) "
 	  		+ "From JobAd ja "
 	  		+ "Inner Join ja.jobPosition jpos "
-	  		+ "Inner Join ja.jobProvider jpr "
+	  		+ "Inner Join ja.company cmp "
 			+ "Where ja.jobPosting=:jobPosting")
-	List<JobAdWithProviderDto> getByJobPosting(Date jobPosting);
+	List<JobAdWithCompanyDto> getByJobPosting(Date jobPosting);
 	
-	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdWithProviderDto"
-	  		+"(jpr.companyName,jpos.positionName,ja.numberOfPosition,ja.jobPosting,ja.jobUnposting) "
+	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdWithCompanyDto"
+	  		+"(cmp.companyName,jpos.positionName,ja.numberOfPosition,ja.jobPosting,ja.jobUnposting) "
 	  		+ "From JobAd ja "
 	  		+ "Inner Join ja.jobPosition jpos "
-	  		+ "Inner Join ja.jobProvider jpr "
-			+ "Where jpr.companyName =:companyName")
-	List<JobAdWithProviderDto> getByCompanyName(String companyName);
+	  		+ "Inner Join ja.company cmp "
+			+ "Where cmp.companyName =:companyName")
+	List<JobAdWithCompanyDto> getByCompanyName(String companyName);
 	
 }

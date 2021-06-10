@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobProvider","jobSeeker"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","company","candidate"})
 public class User{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,9 +39,9 @@ public class User{
 	private Boolean verifyMail;
 	
 	@OneToOne(mappedBy="user")
-	private JobProvider jobProvider;
+	private Company company;
 	
 	@OneToOne(mappedBy="user")
-	private JobSeeker jobSeeker;
+	private Candidates candidate;
 
 }

@@ -6,14 +6,14 @@ import java.util.List;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.dtos.JobAdWithProviderDto;
+import kodlamaio.hrms.entities.dtos.JobAdWithCompanyDto;
 
 public interface JobAdService {
-	DataResult<List<JobAdWithProviderDto>> getByIsActive();
+	DataResult<List<JobAdWithCompanyDto>> getByIsActive();
 	
-	DataResult<List<JobAdWithProviderDto>> getByJobPosting(Date jobPosting);
+	DataResult<List<JobAdWithCompanyDto>> getByJobPosting(Date jobPosting);
 	
-	DataResult<List<JobAdWithProviderDto>> getByCompanyName(String companyName);
+	DataResult<List<JobAdWithCompanyDto>> getByCompanyName(String companyName);
 	
 	Result setPassiveByJobAdId(int jobAdId);
 	

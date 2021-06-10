@@ -1,14 +1,11 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -19,32 +16,33 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "job_providers")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAds","user"})
 //@Inheritance(strategy=InheritanceType.JOINED)
-public class JobProvider {
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","user"})
+@Table(name="candidates")
+public class Candidates {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "job_provider_id")
-	private Integer jobProviderId;
+	@Column(name = "candidate_id")
+	private Integer candidateId;
 
-	@Column(name="company_name")
-	private String companyName;
-
-	@Column(name = "web_address")
-	private String webAddress;
+	@Column(name="first_name")
+	private String firstName;
 	
-	@Column(name = "phone")
-	private String phone;
+	@Column(name="last_name")
+	private String lastName;
+	
+	@Column(name="identity_number")
+	private String identityNumber;
+	
+	@Column(name="year_of_birth")
+	private String yearOfBirth;
 	
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private User user;
-	
-	@OneToMany(mappedBy="jobProvider")
-	private List<JobAd> jobAds;
-	
+
 }

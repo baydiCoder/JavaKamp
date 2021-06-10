@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobProvider","jobPosition","city"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","company","jobPosition","city"})
 @Table(name="job_ads")
 public class JobAd {
 	@Id
@@ -54,8 +54,8 @@ public class JobAd {
 	private boolean isActive;
 	
 	@ManyToOne
-	@JoinColumn(name="job_provider_id")
-	private JobProvider jobProvider;
+	@JoinColumn(name="company_id")
+	private Company company;
 	
 	@ManyToOne
 	@JoinColumn(name="position_id")

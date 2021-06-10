@@ -5,43 +5,43 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kodlamaio.hrms.business.abstracts.JobSeekerService;
+import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.core.adapter.MernisServiceAdapter;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-import kodlamaio.hrms.dataAccess.abstracts.JobSeekerDao;
-import kodlamaio.hrms.entities.concretes.JobSeeker;
+import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
+import kodlamaio.hrms.entities.concretes.Candidates;
 
 @Service
-public class JobSeekerManager implements JobSeekerService {
+public class CandidateManager implements CandidateService {
 
-	private JobSeekerDao jobSeekerDao;
+	private CandidateDao candidatedao;
 	private MernisServiceAdapter mernisServiceAdapter;
 
 	@Autowired
-	public JobSeekerManager(JobSeekerDao jobSeekerDao, MernisServiceAdapter mernisServiceAdapter) {
+	public CandidateManager(CandidateDao candidatedao, MernisServiceAdapter mernisServiceAdapter) {
 		super();
-		this.jobSeekerDao = jobSeekerDao;
+		this.candidatedao = candidatedao;
 		this.mernisServiceAdapter = mernisServiceAdapter;
 	}
 
 	@Override
-	public DataResult<List<JobSeeker>> getAll() {
-		return new SuccessDataResult<List<JobSeeker>>(this.jobSeekerDao.findAll(), "İş arayanlar listelendi.");
+	public DataResult<List<Candidates>> getAll() {
+		return new SuccessDataResult<List<Candidates>>(this.candidatedao.findAll(), "İş arayanlar listelendi.");
 	}
 
 	@Override
-	public Result addJobSeeker(JobSeeker jobSeeker) {
+	public Result addCandidate(Candidates candidate) {
 		try {
-			boolean checkPerson = this.mernisServiceAdapter.checkIfRealPerson(jobSeeker.getIdentityNumber(),
-					jobSeeker.getFirstName(), jobSeeker.getLastName(), jobSeeker.getYearOfBirth());
+			boolean checkPerson = this.mernisServiceAdapter.checkIfRealPerson(candidate.getIdentityNumber(),
+					candidate.getFirstName(), candidate.getLastName(), candidate.getYearOfBirth());
 			if (checkPerson) {
-				JobSeeker inList = this.jobSeekerDao.findByIdentityNumber(jobSeeker.getIdentityNumber());
+				Candidates inList = this.candidatedao.findByIdentityNumber(candidate.getIdentityNumber());
 				if (inList == null ) {
-					this.jobSeekerDao.save(jobSeeker);
+					this.candidatedao.save(candidate);
 				}
 				else
 					return new ErrorResult("HATA : Kimlik Numarası kayıtlı.");

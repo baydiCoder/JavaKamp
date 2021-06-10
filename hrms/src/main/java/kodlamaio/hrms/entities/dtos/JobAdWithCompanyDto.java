@@ -10,15 +10,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class JobAdWithProviderDto {
+public class JobAdWithCompanyDto {
 	
-	public JobAdWithProviderDto(String positionName,String numberOfPostition, Date jobPosting, Date jobUnposting) {
-		super();
-		this.numberOfPostition = numberOfPostition;
-		this.jobPosting = jobPosting;
-		this.jobUnposting = jobUnposting;
-		this.positionName=positionName;
-	}
 	private String companyName;
 	private String positionName;
 	private String numberOfPostition;
